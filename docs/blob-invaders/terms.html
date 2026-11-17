@@ -96,7 +96,7 @@
     <header>
       <h1>Blob Invaders</h1>
       <p class="subtitle">Termini di servizio · Terms of service</p>
-      <p class="muted">Ultimo aggiornamento: 12 novembre 2026</p>
+      <p class="muted">Ultimo aggiornamento: 17 novembre 2026</p>
       <nav class="lang-nav" aria-label="Lingue">
         <a href="#it">Italiano</a>
         <a href="#en">English</a>
@@ -145,13 +145,24 @@
         <h2>3. Descrizione del servizio</h2>
         <p>
           Blob Invaders è un <strong>gioco arcade</strong> per dispositivi mobili.
-          Non è richiesto un account né una registrazione online per giocare
-          nelle funzionalità attuali.
+          Non è richiesto un account con email o password.
         </p>
         <p>
-          Punteggi, nickname arcade e impostazioni sono, di norma,
-          <strong>memorizzati solo sul tuo dispositivo</strong>, come descritto
-          nella privacy policy.
+          Puoi giocare con <strong>dati sul dispositivo</strong> (impostazioni,
+          classifica locale, record personali) come descritto nella privacy policy.
+        </p>
+        <p>
+          L’app offre anche una <strong>classifica globale</strong> opzionale:
+          se un punteggio si qualifica e scegli di salvarlo, nickname, punteggio
+          e statistiche di run associate possono essere memorizzati su servizi cloud
+          (Firebase) e <strong>visualizzati ad altri giocatori</strong> nel top
+          mondiale e nel profilo pubblico pseudonimo collegato. Per queste funzioni
+          l’app usa un <strong>identificativo anonimo</strong> persistente (Firebase Auth).
+        </p>
+        <p class="muted">
+          Senza connessione o se i servizi online non sono disponibili, restano
+          utilizzabili le parti del gioco che non richiedono il cloud (inclusa la
+          classifica su questo device), nei limiti tecnici dell’app.
         </p>
       </section>
 
@@ -167,21 +178,28 @@
         <ul>
           <li>decompilare, modificare o creare opere derivate dell’app, se non nei limiti legali;</li>
           <li>distribuire, rivendere o sfruttare commercialmente il gioco o i suoi contenuti;</li>
-          <li>aggirare misure tecniche o usare l’app in violazione di legge.</li>
+          <li>aggirare misure tecniche (inclusi controlli anti-cheat o App Check) o usare l’app in violazione di legge;</li>
+          <li>manipolare punteggi, nickname o dati inviati alla classifica globale.</li>
         </ul>
       </section>
 
       <section>
-        <h2>5. Comportamento dell’utente</h2>
+        <h2>5. Comportamento dell’utente e contenuti</h2>
         <p>
-          Se inserisci un <strong>nickname</strong> per la classifica locale,
-          devi evitare contenuti illeciti, offensivi, discriminatori o che
-          violino diritti di terzi. Il nickname resta sul dispositivo; sei
-          responsabile del testo che scegli.
+          Se imposti un <strong>nickname</strong> arcade (locale o in classifica globale),
+          devi evitare contenuti illeciti, offensivi, discriminatori, che violino
+          diritti di terzi o che contengano dati personali identificabili (nome reale,
+          email, telefono, ecc.). Sei responsabile del testo che scegli.
         </p>
         <p>
-          Non sono previsti contenuti generati dagli utenti visibili ad altri
-          giocatori nelle funzionalità attuali dell’app.
+          Il nickname usato per la <strong>classifica globale</strong> è
+          <strong>visibile ad altri giocatori</strong> e può essere rifiutato o
+          rimosso se viola questi Termini o filtri automatici lato server.
+        </p>
+        <p>
+          Ci riserviamo di rimuovere o correggere voci di classifica o profili
+          pubblici in caso di abuso, frode sui punteggi o violazioni, senza obbligo
+          di ripristino.
         </p>
       </section>
 
@@ -224,6 +242,10 @@
           ininterrotto o compatibile con ogni dispositivo.
         </p>
         <p>
+          I servizi online (classifica globale, profili) dipendono da rete e
+          da fornitori terzi; possono essere non disponibili, ritardati o modificati.
+        </p>
+        <p>
           Nei limiti consentiti dalla legge, non siamo responsabili per danni
           indiretti, perdita di dati locali non salvati altrove, o
           mancati guadagni derivanti dall’uso dell’app. La responsabilità
@@ -256,7 +278,8 @@
         <p>
           Rispetta l’<strong>età consigliata</strong> indicata nello store
           (classificazione IARC / PEGI, ecc.). Se sei minorenne, usa l’app
-          secondo le regole dei tuoi genitori o tutori e la legge locale.
+          secondo le regole dei tuoi genitori o tutori e la legge locale,
+          in particolare se partecipi alla classifica globale con un nickname visibile.
         </p>
       </section>
 
@@ -268,8 +291,9 @@
           sostanziali può costituire accettazione, ove consentito dalla legge.
         </p>
         <p>
-          Possiamo interrompere la distribuzione o funzionalità dell’app,
-          fermo restando quanto imposto dalla legge e dagli store.
+          Possiamo interrompere la distribuzione, reimpostare o cessare la
+          classifica globale o altre funzioni online, fermo restando quanto
+          imposto dalla legge e dagli store.
         </p>
       </section>
 
@@ -323,9 +347,25 @@
       <section>
         <h2>3. Service description</h2>
         <p>
-          Blob Invaders is a mobile <strong>arcade game</strong>. No online
-          account is required for current features. Scores, arcade nicknames, and
-          settings are generally stored <strong>on your device only</strong>.
+          Blob Invaders is a mobile <strong>arcade game</strong>. No email/password
+          account is required.
+        </p>
+        <p>
+          You can play with <strong>on-device data</strong> (settings, local
+          leaderboard, personal bests) as described in the privacy policy.
+        </p>
+        <p>
+          The app also offers an optional <strong>global leaderboard</strong>:
+          if a score qualifies and you choose to save it, your nickname, score,
+          and related run stats may be stored on cloud services (Firebase) and
+          <strong>shown to other players</strong> on the worldwide board and
+          linked pseudonymous public profile. Online features use a persistent
+          <strong>anonymous identifier</strong> (Firebase Auth).
+        </p>
+        <p class="muted">
+          Without connectivity or if online services are down, offline-capable
+          parts of the game (including the on-device leaderboard) remain usable
+          within technical limits.
         </p>
       </section>
 
@@ -340,17 +380,27 @@
         <ul>
           <li>reverse engineer or create derivative works beyond legal limits;</li>
           <li>redistribute, resell, or commercially exploit the game;</li>
-          <li>circumvent technical measures or use the app unlawfully.</li>
+          <li>circumvent technical measures (including anti-cheat or App Check) or use the app unlawfully;</li>
+          <li>manipulate scores, nicknames, or data submitted to the global leaderboard.</li>
         </ul>
       </section>
 
       <section>
-        <h2>5. User conduct</h2>
+        <h2>5. User conduct and content</h2>
         <p>
-          If you set a local <strong>arcade nickname</strong>, avoid unlawful,
-          offensive, or infringing content. You are responsible for the text you
-          choose. Current app features do not expose user-generated content to
-          other players.
+          If you set an <strong>arcade nickname</strong> (local or global
+          leaderboard), avoid unlawful, offensive, discriminatory, or infringing
+          content and do not include personally identifying information (legal
+          name, email, phone, etc.). You are responsible for the text you choose.
+        </p>
+        <p>
+          Nicknames on the <strong>global leaderboard</strong> are
+          <strong>visible to other players</strong> and may be rejected or
+          removed if they violate these Terms or server-side filters.
+        </p>
+        <p>
+          We may remove or adjust leaderboard entries or public profiles in cases
+          of abuse, score fraud, or violations, without obligation to restore them.
         </p>
       </section>
 
@@ -386,6 +436,10 @@
           warrant error-free or uninterrupted operation on every device.
         </p>
         <p>
+          Online services (global leaderboard, profiles) depend on network and
+          third-party providers and may be unavailable, delayed, or changed.
+        </p>
+        <p>
           To the extent permitted by law, we are not liable for indirect
           damages, loss of local unsaved data, or lost profits. Total liability,
           where not excluded, is limited to amounts you paid for the app or IAP
@@ -411,7 +465,7 @@
         <p>
           Follow the <strong>age rating</strong> shown on the store (IARC / PEGI,
           etc.). Minors should use the app in line with parental guidance and
-          local law.
+          local law, especially when joining the global leaderboard with a visible nickname.
         </p>
       </section>
 
@@ -421,6 +475,10 @@
           We may update the app or these Terms. The date at the top shows the
           latest revision. Continued use after material changes may constitute
           acceptance where permitted by law.
+        </p>
+        <p>
+          We may stop distribution, reset, or discontinue the global leaderboard
+          or other online features, subject to law and store rules.
         </p>
       </section>
 

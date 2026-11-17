@@ -20,7 +20,7 @@
     body {
       margin: 0;
       padding: 1.25rem 1rem 3rem;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       font-size: 1rem;
       line-height: 1.6;
       background: var(--bg);
@@ -83,6 +83,12 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
+    code {
+      font-size: 0.9em;
+      background: var(--bg);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -90,7 +96,7 @@
     <header>
       <h1>Blob Invaders</h1>
       <p class="subtitle">Informativa sulla privacy · Privacy policy</p>
-      <p class="muted">Ultimo aggiornamento: 12 novembre 2026</p>
+      <p class="muted">Ultimo aggiornamento: 17 novembre 2026</p>
       <nav class="lang-nav" aria-label="Lingue">
         <a href="#it">Italiano</a>
         <a href="#en">English</a>
@@ -105,22 +111,29 @@
           <strong>Blob Invaders</strong> è un gioco arcade per Android e iOS,
           distribuito su <strong>Google Play</strong> e sull’<strong>Apple App Store</strong>
           (identificativo app: <code>com.jdurazzi.blobinvaders</code>).
-          Non è richiesto alcun account né una registrazione per giocare.
+          Non è richiesto un account con email o password per giocare.
         </p>
         <p class="muted">
           Questa informativa è la stessa indicata nella scheda di entrambi gli store.
         </p>
         <p>
-          Non gestiamo server nostri per profili utente e <strong>non vendiamo
-          né affittiamo</strong> i tuoi dati. Le informazioni legate al gioco
-          restano, di norma, <strong>solo sul tuo dispositivo</strong>.
+          Puoi giocare in locale sul dispositivo. Per la <strong>classifica globale</strong>
+          e le funzioni collegate, l’app usa servizi cloud (Firebase) e assegna
+          un <strong>identificativo anonimo</strong> persistente sul dispositivo,
+          senza richiedere registrazione tradizionale.
+        </p>
+        <p>
+          <strong>Non vendiamo né affittiamo</strong> i tuoi dati a terzi per
+          marketing. I trattamenti descritti servono al funzionamento del gioco
+          e, ove applicabile, alla classifica mondiale e alla prevenzione abusi.
         </p>
       </section>
 
       <section>
         <h2>Titolare del trattamento</h2>
         <p>
-          Jacopo Durazzi (sviluppatore indipendente dell’app Blob Invaders).
+          Jacopo Durazzi (sviluppatore indipendente dell’app Blob Invaders),
+          titolare di Partita IVA <strong>04345831202</strong>.
         </p>
         <p id="contact-it">
           Contatto privacy:
@@ -129,36 +142,127 @@
       </section>
 
       <section>
-        <h2>Dati trattati nell’app</h2>
+        <h2>Dati sul dispositivo (locali)</h2>
         <p>
-          Per le dichiarazioni richieste da Google Play, dall’App Store di Apple
-          e dalla normativa sulla privacy, i dati sono considerati «raccolti»
-          quando vengono inviati <em>fuori</em> dal dispositivo verso server
-          nostri o di terzi. Blob Invaders <strong>non invia</strong> a server
-          nostri nickname, punteggi o impostazioni.
+          L’app memorizza sul telefono o tablet, senza inviarli al cloud
+          (salvo dove indicato nella sezione successiva), ad esempio:
         </p>
-        <p>Sul dispositivo l’app può memorizzare localmente, ad esempio:</p>
         <ul>
-          <li>un <strong>nickname arcade</strong> scelto da te (solo in locale);</li>
-          <li><strong>punteggi e voci in classifica</strong> delle tue partite;</li>
-          <li><strong>impostazioni</strong> (volume musica/effetti, lingua, controlli, contrasto, onboarding già visto);</li>
+          <li>un <strong>nickname arcade</strong> scelto da te (predefinito per le partite);</li>
+          <li><strong>classifica e punteggi locali</strong> («su questo device»);</li>
+          <li><strong>impostazioni</strong> (volume musica/effetti, lingua, controlli, contrasto, onboarding);</li>
           <li><strong>record personali</strong> di gioco.</li>
         </ul>
         <p>
-          Questi dati servono solo al funzionamento del gioco sul telefono o tablet.
-          Puoi eliminarli disinstallando l’app o, dove previsto, usando le opzioni
-          di reset nelle impostazioni del gioco.
+          Puoi eliminarli disinstallando l’app o, dove previsto, con le opzioni
+          di reset nelle impostazioni del gioco (es. azzeramento classifica locale).
+        </p>
+      </section>
+
+      <section>
+        <h2>Classifica globale e servizi online</h2>
+        <p>
+          Quando usi funzioni online (classifica <strong>mondiale</strong>, consultazione
+          del top globale, profilo pubblico pseudonimo da classifica), l’app e i
+          nostri servizi trattano dati inviati <em>fuori</em> dal dispositivo.
+        </p>
+        <p><strong>All’avvio dell’app</strong> (se la connessione è disponibile):</p>
+        <ul>
+          <li>viene creato o riutilizzato un <strong>identificativo utente anonimo</strong>
+            (<code>uid</code>) tramite <strong>Firebase Authentication</strong>;</li>
+          <li>il dispositivo può essere verificato con <strong>Firebase App Check</strong>
+            (integrità app / dispositivo) per limitare abusi sulla classifica.</li>
+        </ul>
+        <p>
+          <strong>Se il tuo punteggio</strong> si qualifica per il salvataggio in classifica
+          globale e confermi il salvataggio, inviamo al cloud (Firestore, tramite
+          funzione server) in modo pseudonimo:
+        </p>
+        <ul>
+          <li><code>uid</code> anonimo;</li>
+          <li><strong>nickname</strong> arcade (visibile ad altri giocatori nella classifica);</li>
+          <li><strong>punteggio</strong>, modalità di gioco (standard / hardcore), ondate e statistiche di run associate;</li>
+          <li><strong>data e ora</strong> del submit (orario server).</li>
+        </ul>
+        <p>
+          Per ogni giocatore conserviamo al massimo un record migliore per modalità
+          nella classifica globale; aggiorniamo un <strong>profilo pubblico</strong>
+          denormalizzato (<code>users/{uid}</code>) con nickname e migliori punteggi
+          per modalità, leggibile da altri utenti dell’app.
+        </p>
+        <p class="muted">
+          Finché non salvi un punteggio in classifica globale, nickname e statistiche
+          della singola run non vengono pubblicati nel cloud, ma l’identificativo
+          anonimo può comunque esistere per il funzionamento tecnico dei servizi online.
+        </p>
+        <p>
+          Non chiediamo nome reale, email o numero di telefono per la classifica.
+          Il nickname è <strong>contenuto scelto da te</strong> e può essere letto da altri
+          giocatori: evita dati personali identificativi.
+        </p>
+      </section>
+
+      <section>
+        <h2>Base giuridica (UE / GDPR)</h2>
+        <p>Ove si applica il GDPR, trattiamo i dati principalmente per:</p>
+        <ul>
+          <li><strong>esecuzione del servizio</strong> (gioco, classifica globale, profilo pseudonimo collegato);</li>
+          <li><strong>legittimo interesse</strong> a garantire integrità della classifica, sicurezza e prevenzione di frodi/abuso (App Check, validazione server dei punteggi), nel rispetto dei tuoi diritti.</li>
+        </ul>
+        <p class="muted">
+          Non usiamo questi dati per pubblicità profilata né per «tracking» cross-app
+          ai fini marketing.
+        </p>
+      </section>
+
+      <section>
+        <h2>Conservazione</h2>
+        <p>
+          I dati locali restano sul dispositivo finché non li cancelli o disinstalli l’app.
+        </p>
+        <p>
+          I dati di classifica globale e profilo pubblico restano su Firebase
+          <strong>per il tempo in cui manteniamo il servizio online</strong>, salvo
+          cancellazione su tua richiesta (vedi diritti) o interventi di moderazione
+          (es. rimozione nickname o record in violazione dei termini).
         </p>
       </section>
 
       <section>
         <h2>Cosa non facciamo</h2>
         <ul>
-          <li>Nessun login o account obbligatorio.</li>
-          <li>Nessuna pubblicità in-app basata su profilazione (alle funzionalità attuali dell’app).</li>
-          <li>Nessun kit di analytics o crash reporting di terze parti integrato nell’app (alle funzionalità attuali).</li>
+          <li>Nessun account con email/password obbligatorio per giocare.</li>
+          <li>Nessuna pubblicità in-app basata su profilazione (versione attuale).</li>
+          <li>Nessun SDK di analytics o crash reporting di terze parti dedicato al marketing (versione attuale).</li>
           <li>Nessuna vendita di dati personali a terzi.</li>
         </ul>
+      </section>
+
+      <section>
+        <h2>Fornitori e infrastruttura (responsabili del trattamento)</h2>
+        <p>
+          Non gestiamo data center propri. I dati cloud sono ospitati da
+          <strong>Google Ireland Limited</strong> / <strong>Google LLC</strong>
+          tramite <strong>Google Firebase</strong> (Authentication, Firestore,
+          Cloud Functions, App Check), in regioni che Google seleziona per il progetto
+          (es. Stati Uniti o Unione europea). Il traffico è protetto in transito (TLS).
+        </p>
+        <p>
+          Informazioni su Firebase e condizioni per sviluppatori:
+          <a href="https://firebase.google.com/support/privacy" rel="noopener noreferrer">Firebase Privacy</a>.
+          Google agisce come <strong>responsabile del trattamento</strong> per conto nostro
+          secondo il Data Processing Addendum Google Cloud / Firebase.
+        </p>
+        <p>
+          L’interfaccia può usare <strong>Google Fonts</strong> per tipografie;
+          il dispositivo può contattare server Google (vedi
+          <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Privacy policy di Google</a>).
+        </p>
+        <p>
+          Durante le chiamate ai servizi Google, possono essere trattati dati tecnici
+          di connessione (es. indirizzo IP) come parte della rete; non li usiamo per
+          creare profili marketing.
+        </p>
       </section>
 
       <section>
@@ -166,62 +270,65 @@
         <p>
           Nell’area sviluppatore di <strong>Google Play Console</strong> e in
           <strong>App Store Connect</strong> usiamo lo stesso URL di questa pagina
-          come informativa sulla privacy dell’app.
+          come informativa sulla privacy dell’app e compiliamo i moduli
+          «Data safety» / «App Privacy» in modo coerente con quanto scritto qui.
         </p>
         <p>
           <strong>Google</strong> e <strong>Apple</strong> possono trattare dati
-          personali quando scarichi, installi, aggiorni o acquisti l’app tramite i
-          loro store (ad esempio account store, fatturazione, prevenzione frodi).
-          Tali trattamenti sono regolati dalle rispettive informative:
+          personali quando scarichi, installi o aggiorni l’app tramite i loro store
+          (account store, fatturazione, ecc.):
         </p>
         <ul>
           <li>
             <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Privacy policy di Google</a>
-            (Google Play)
           </li>
           <li>
             <a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Privacy policy di Apple</a>
-            (App Store)
           </li>
         </ul>
-        <p>
-          Le «etichette privacy» / moduli sui dati che compiliamo per gli store
-          descrivono il comportamento dell’<em>app Blob Invaders</em>, non quello
-          di Google o Apple in quanto piattaforme di distribuzione.
-        </p>
-      </section>
-
-      <section>
-        <h2>Altri fornitori</h2>
-        <p>
-          L’interfaccia può usare il pacchetto <strong>Google Fonts</strong> per
-          caricare tipografie. Su Android e iOS il dispositivo può, in alcuni
-          casi, contattare i server di Google per scaricare i font; si applicano
-          le policy di Google (inclusi dati di connessione come l’indirizzo IP).
-        </p>
       </section>
 
       <section>
         <h2>Minori</h2>
         <p>
-          L’app non è pensata per raccogliere consapevolmente dati personali di
-          minori tramite account o moduli online. Il nickname arcade è opzionale
-          e resta sul dispositivo.
+          Rispetta l’età consigliata nello store. Il nickname in classifica globale
+          è visibile ad altri giocatori: se sei minorenne, usa l’app con il
+          consenso dei tuoi genitori o tutori e non inserire dati personali nel nickname.
+        </p>
+      </section>
+
+      <section>
+        <h2>Trasferimenti internazionali</h2>
+        <p>
+          I dati trattati tramite Firebase possono essere conservati o elaborati
+          fuori dallo SEE. Google applica garanzie contrattuali (es. Clausole
+          Contrattuali Standard) ove richiesto dalla legge.
         </p>
       </section>
 
       <section>
         <h2>Diritti (UE / GDPR)</h2>
         <p>
-          Se ti trovi nello Spazio economico europeo, puoi avere diritto di
-          accesso, rettifica, cancellazione, limitazione, opposizione e
-          portabilità nei limiti previsti dalla legge. Poiché non conserviamo
-          dati di gioco su server nostri, spesso la cancellazione sul dispositivo
-          (o la disinstallazione) è sufficiente per i dati gestiti solo in locale.
+          Se ti trovi nello Spazio economico europeo o nel Regno Unito, puoi
+          avere diritto di accesso, rettifica, cancellazione, limitazione,
+          opposizione e portabilità, nei limiti previsti dalla legge.
         </p>
         <p>
-          Per esercitare i diritti o per domande su questa informativa, scrivi
-          all’indirizzo email di contatto indicato sopra.
+          <strong>Dati solo locali:</strong> disinstallare l’app o usare i reset
+          in-app di solito li rimuove.
+        </p>
+        <p>
+          <strong>Dati in classifica globale / profilo cloud:</strong> puoi chiedere
+          la cancellazione o la rettifica scrivendo a
+          <a href="mailto:durazzi.jacopo@gmail.com">durazzi.jacopo@gmail.com</a>.
+          Indica, se possibile, il tuo nickname in classifica e che usi Blob Invaders;
+          per verificare la richiesta potremmo chiederti informazioni aggiuntive
+          limitate (es. modalità e data approssimativa del record). Elaboreremo
+          la richiesta entro i termini di legge.
+        </p>
+        <p>
+          Puoi anche presentare reclamo all’autorità di controllo del tuo paese
+          (in Italia: Garante per la protezione dei dati personali).
         </p>
       </section>
 
@@ -229,8 +336,8 @@
         <h2>Modifiche</h2>
         <p>
           Possiamo aggiornare questa pagina se cambiano funzionalità dell’app
-          (ad esempio classifiche online, analytics o accesso con account).
-          La data in alto indica l’ultima revisione.
+          (es. nuove classifiche, analytics o tipi di account). La data in alto
+          indica l’ultima revisione.
         </p>
       </section>
     </article>
@@ -242,24 +349,32 @@
         <h2>Overview</h2>
         <p>
           <strong>Blob Invaders</strong> is a mobile arcade game for Android and
-          iOS, distributed on <strong>Google Play</strong> and the
-          <strong>Apple App Store</strong> (app ID:
-          <code>com.jdurazzi.blobinvaders</code>). No sign-in or registration
-          is required.
+          iOS on <strong>Google Play</strong> and the <strong>Apple App Store</strong>
+          (app ID: <code>com.jdurazzi.blobinvaders</code>). No email/password
+          account is required to play.
         </p>
         <p class="muted">
           This policy is the same URL listed on both store listings.
         </p>
         <p>
-          We do not run our own user-profile servers and we <strong>do not sell
-          or rent</strong> your data. Game-related information generally stays
-          <strong>on your device only</strong>.
+          You can play with data kept on your device. For the <strong>global
+          leaderboard</strong> and related features, the app uses cloud services
+          (Firebase) and assigns a persistent <strong>anonymous identifier</strong>
+          on your device without traditional sign-up.
+        </p>
+        <p>
+          We <strong>do not sell or rent</strong> your data for third-party marketing.
+          Processing described here supports gameplay, the worldwide leaderboard,
+          and abuse prevention where applicable.
         </p>
       </section>
 
       <section>
         <h2>Data controller</h2>
-        <p>Jacopo Durazzi (independent developer of Blob Invaders).</p>
+        <p>
+          Jacopo Durazzi (independent developer of Blob Invaders), VAT ID
+          <strong>04345831202</strong> (Italy).
+        </p>
         <p>
           Privacy contact:
           <a href="mailto:durazzi.jacopo@gmail.com">durazzi.jacopo@gmail.com</a>
@@ -267,87 +382,185 @@
       </section>
 
       <section>
-        <h2>Data processed in the app</h2>
+        <h2>Data on your device (local)</h2>
         <p>
-          We do <strong>not</strong> send nicknames, scores, or settings to our
-          servers. Locally on your device the app may store:
+          The app stores on your phone or tablet, without sending to the cloud
+          (except as in the next section), for example:
         </p>
         <ul>
-          <li>an optional <strong>arcade nickname</strong>;</li>
-          <li><strong>scores and leaderboard entries</strong> for your runs;</li>
+          <li>an <strong>arcade nickname</strong> you choose;</li>
+          <li><strong>local leaderboard</strong> scores (“on this device”);</li>
           <li><strong>settings</strong> (audio, language, controls, accessibility, onboarding);</li>
           <li><strong>personal best</strong> records.</li>
         </ul>
         <p>
-          You can remove this data by uninstalling the app or using in-game reset
-          options where available.
+          Remove this data by uninstalling the app or using in-game reset options
+          where available.
+        </p>
+      </section>
+
+      <section>
+        <h2>Global leaderboard and online services</h2>
+        <p>
+          When you use online features (worldwide <strong>leaderboard</strong>,
+          viewing global tops, pseudonymous public profile from the board), data
+          is sent <em>off</em> your device.
+        </p>
+        <p><strong>At app launch</strong> (when connectivity is available):</p>
+        <ul>
+          <li>an anonymous <strong>user ID</strong> (<code>uid</code>) is created
+            or reused via <strong>Firebase Authentication</strong>;</li>
+          <li><strong>Firebase App Check</strong> may verify app/device integrity
+            to limit leaderboard abuse.</li>
+        </ul>
+        <p>
+          <strong>If your score</strong> qualifies for global leaderboard save and
+          you confirm, we send to the cloud (Firestore via server-side functions):
+        </p>
+        <ul>
+          <li>anonymous <code>uid</code>;</li>
+          <li><strong>nickname</strong> (visible to other players);</li>
+          <li><strong>score</strong>, game mode (standard / hardcore), wave stats;</li>
+          <li><strong>server timestamp</strong> of submission.</li>
+        </ul>
+        <p>
+          We keep at most one best record per mode per player on the global board
+          and update a public <strong>pseudonymous profile</strong> with nickname
+          and best scores per mode, readable by other users.
+        </p>
+        <p class="muted">
+          Until you save to the global leaderboard, run stats are not published
+          to the cloud, but the anonymous ID may still exist for technical operation
+          of online features.
+        </p>
+        <p>
+          We do not ask for legal name, email, or phone for the leaderboard.
+          Your nickname is <strong>user-chosen content</strong> visible to others—avoid
+          personally identifying information.
+        </p>
+      </section>
+
+      <section>
+        <h2>Legal basis (EEA / UK GDPR)</h2>
+        <p>Where GDPR applies, we process data mainly for:</p>
+        <ul>
+          <li><strong>performance of the service</strong> (gameplay, global leaderboard, linked pseudonymous profile);</li>
+          <li><strong>legitimate interests</strong> in leaderboard integrity, security, and fraud/abuse prevention (App Check, server score validation), balanced with your rights.</li>
+        </ul>
+        <p class="muted">
+          We do not use this data for personalized ads or cross-app marketing tracking.
+        </p>
+      </section>
+
+      <section>
+        <h2>Retention</h2>
+        <p>
+          Local data stays on your device until you delete it or uninstall the app.
+        </p>
+        <p>
+          Global leaderboard and public profile data remain on Firebase
+          <strong>while we operate the online service</strong>, unless you request
+          deletion (see rights) or we remove entries under our terms (e.g. policy-breaking nicknames).
         </p>
       </section>
 
       <section>
         <h2>What we do not do</h2>
         <ul>
-          <li>No mandatory login or accounts.</li>
-          <li>No third-party analytics or crash SDKs in the current app version.</li>
+          <li>No mandatory email/password account to play.</li>
+          <li>No in-app personalized advertising (current version).</li>
+          <li>No third-party marketing analytics or crash SDKs (current version).</li>
           <li>No sale of personal data.</li>
         </ul>
       </section>
 
       <section>
-        <h2>Google Play and App Store</h2>
+        <h2>Processors and infrastructure</h2>
         <p>
-          We use this same URL as the app’s privacy policy in
-          <strong>Google Play Console</strong> and <strong>App Store Connect</strong>.
+          We do not run our own data centers. Cloud data is hosted by
+          <strong>Google Ireland Limited</strong> / <strong>Google LLC</strong>
+          through <strong>Google Firebase</strong> (Authentication, Firestore,
+          Cloud Functions, App Check). Traffic is encrypted in transit (TLS).
         </p>
         <p>
-          <strong>Google</strong> and <strong>Apple</strong> may process personal
-          data when you download, install, update, or purchase through their stores.
-          See their policies:
+          See
+          <a href="https://firebase.google.com/support/privacy" rel="noopener noreferrer">Firebase Privacy</a>.
+          Google acts as our <strong>processor</strong> under the Google Cloud / Firebase DPA.
         </p>
-        <ul>
-          <li>
-            <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google Privacy Policy</a>
-          </li>
-          <li>
-            <a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple Privacy Policy</a>
-          </li>
-        </ul>
         <p>
-          Store privacy labels / data safety forms describe the
-          <em>Blob Invaders</em> app, not Google’s or Apple’s platform processing.
+          The UI may use <strong>Google Fonts</strong>; your device may contact
+          Google servers under
+          <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google’s Privacy Policy</a>.
+        </p>
+        <p>
+          Connection metadata (e.g. IP address) may be processed as part of network
+          operations; we do not use it for marketing profiles.
         </p>
       </section>
 
       <section>
-        <h2>Other providers</h2>
+        <h2>Google Play and App Store</h2>
         <p>
-          The app may use <strong>Google Fonts</strong>; on Android and iOS your
-          device might contact Google to download fonts under
-          <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google’s Privacy Policy</a>.
+          We list this URL as the app privacy policy in
+          <strong>Google Play Console</strong> and <strong>App Store Connect</strong>
+          and complete Data safety / App Privacy forms consistently with this text.
+        </p>
+        <p>
+          <strong>Google</strong> and <strong>Apple</strong> may process data when
+          you download or update through their stores. See their privacy policies above.
+        </p>
+      </section>
+
+      <section>
+        <h2>Children</h2>
+        <p>
+          Follow the store age rating. Global leaderboard nicknames are visible
+          to other players. Minors should use the app with parental consent and
+          must not put personal data in nicknames.
+        </p>
+      </section>
+
+      <section>
+        <h2>International transfers</h2>
+        <p>
+          Firebase processing may occur outside the EEA. Google uses appropriate
+          safeguards (e.g. Standard Contractual Clauses) where required.
         </p>
       </section>
 
       <section>
         <h2>Your rights</h2>
         <p>
-          Depending on your location (e.g. EEA/UK), you may have rights to access,
-          delete, or object to processing. Because we do not store game data on our
-          servers, uninstalling the app often clears locally stored data. Contact
-          us at the email above for requests.
+          In the EEA/UK you may have rights of access, rectification, erasure,
+          restriction, objection, and portability, subject to law.
+        </p>
+        <p>
+          <strong>Local-only data:</strong> uninstalling the app or in-app resets
+          usually removes it.
+        </p>
+        <p>
+          <strong>Global leaderboard / cloud profile:</strong> email
+          <a href="mailto:durazzi.jacopo@gmail.com">durazzi.jacopo@gmail.com</a>
+          to request deletion or correction. Include your leaderboard nickname
+          if possible; we may ask limited follow-up to verify the request and
+          will respond within legal timeframes.
+        </p>
+        <p>
+          You may lodge a complaint with your local supervisory authority.
         </p>
       </section>
 
       <section>
         <h2>Changes</h2>
         <p>
-          We may update this page if the app changes (e.g. online leaderboards or
-          analytics). The date at the top shows the latest revision.
+          We may update this page when app features change. The date at the top
+          is the latest revision.
         </p>
       </section>
     </article>
 
     <footer>
-      <p>Blob Invaders · Jacopo Durazzi · <a href="terms.html">Termini</a></p>
+      <p>Blob Invaders · Jacopo Durazzi · <a href="terms.html">Termini / Terms</a></p>
     </footer>
   </main>
 </body>
