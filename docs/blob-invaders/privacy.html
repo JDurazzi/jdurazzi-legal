@@ -96,7 +96,7 @@
     <header>
       <h1>Blob Invaders</h1>
       <p class="subtitle">Informativa sulla privacy · Privacy policy</p>
-      <p class="muted">Ultimo aggiornamento: 17 novembre 2026</p>
+      <p class="muted">Ultimo aggiornamento: 18 novembre 2026</p>
       <nav class="lang-nav" aria-label="Lingue">
         <a href="#it">Italiano</a>
         <a href="#en">English</a>
@@ -148,14 +148,16 @@
           (salvo dove indicato nella sezione successiva), ad esempio:
         </p>
         <ul>
-          <li>un <strong>nickname arcade</strong> scelto da te (predefinito per le partite);</li>
-          <li><strong>classifica e punteggi locali</strong> («su questo device»);</li>
+          <li>un <strong>nickname arcade</strong> che imposti nella schermata <strong>Profilo</strong>
+            (usato per le partite e, se applicabile, per la classifica mondiale);</li>
+          <li><strong>classifica e punteggi locali</strong> (top 10 su questo device, consultabile dal Profilo);</li>
           <li><strong>impostazioni</strong> (volume musica/effetti, lingua, controlli, contrasto, onboarding);</li>
-          <li><strong>record personali</strong> di gioco.</li>
+          <li><strong>record personali</strong> di gioco;</li>
+          <li><strong>achievement</strong> sbloccati (solo in locale finché non sincronizzati).</li>
         </ul>
         <p>
           Puoi eliminarli disinstallando l’app o, dove previsto, con le opzioni
-          di reset nelle impostazioni del gioco (es. azzeramento classifica locale).
+          di reset nel Profilo o nelle impostazioni del gioco (es. azzeramento classifica locale).
         </p>
       </section>
 
@@ -174,9 +176,10 @@
             (integrità app / dispositivo) per limitare abusi sulla classifica.</li>
         </ul>
         <p>
-          <strong>Se il tuo punteggio</strong> si qualifica per il salvataggio in classifica
-          globale e confermi il salvataggio, inviamo al cloud (Firestore, tramite
-          funzione server) in modo pseudonimo:
+          <strong>Se il tuo punteggio</strong> si qualifica per la top 10 mondiale, l’app
+          lo salva automaticamente in locale e, se la connessione e i controlli di sicurezza
+          lo consentono, lo invia al cloud (Firestore, tramite funzione server)
+          in modo pseudonimo (con il nickname impostato nel Profilo):
         </p>
         <ul>
           <li><code>uid</code> anonimo;</li>
@@ -190,15 +193,27 @@
           denormalizzato (<code>users/{uid}</code>) con nickname e migliori punteggi
           per modalità, leggibile da altri utenti dell’app.
         </p>
+        <p>
+          Quando sblocchi un <strong>achievement</strong> e il dispositivo è online,
+          l’app invia al profilo pubblico (stesso <code>users/{uid}</code>) un
+          <strong>identificativo di achievement</strong> (codice interno del gioco)
+          e la <strong>data/ora di sblocco</strong> (timestamp). Altri giocatori
+          possono vedere quali achievement hai sbloccato sul tuo profilo pseudonimo,
+          analogamente al punteggio in classifica. Non inviamo messaggi né testo libero:
+          solo codici definiti dall’app (es. traguardi su onde, combattimento, classifica).
+        </p>
         <p class="muted">
           Finché non salvi un punteggio in classifica globale, nickname e statistiche
-          della singola run non vengono pubblicati nel cloud, ma l’identificativo
+          della singola run non vengono pubblicati nel cloud; gli achievement si sincronizzano
+          solo dopo uno sblocco locale. L’identificativo
           anonimo può comunque esistere per il funzionamento tecnico dei servizi online.
         </p>
         <p>
           Non chiediamo nome reale, email o numero di telefono per la classifica.
-          Il nickname è <strong>contenuto scelto da te</strong> e può essere letto da altri
-          giocatori: evita dati personali identificativi.
+          Il nickname è <strong>contenuto scelto da te</strong> nel Profilo e può essere letto
+          da altri giocatori: evita dati personali identificativi. Se lo modifichi,
+          l’aggiornamento in cloud avviene quando sei online e hai punteggi già
+          idonei alla classifica mondiale (o al successivo invio qualificato).
         </p>
       </section>
 
@@ -388,14 +403,15 @@
           (except as in the next section), for example:
         </p>
         <ul>
-          <li>an <strong>arcade nickname</strong> you choose;</li>
-          <li><strong>local leaderboard</strong> scores (“on this device”);</li>
+          <li>an <strong>arcade nickname</strong> you set in the <strong>Profile</strong> screen;</li>
+          <li><strong>local leaderboard</strong> scores (device top 10, under Profile);</li>
           <li><strong>settings</strong> (audio, language, controls, accessibility, onboarding);</li>
-          <li><strong>personal best</strong> records.</li>
+          <li><strong>personal best</strong> records;</li>
+          <li>unlocked <strong>achievements</strong> (local until synced online).</li>
         </ul>
         <p>
-          Remove this data by uninstalling the app or using in-game reset options
-          where available.
+          Remove this data by uninstalling the app or using reset options in Profile
+          or Settings where available.
         </p>
       </section>
 
@@ -414,8 +430,9 @@
             to limit leaderboard abuse.</li>
         </ul>
         <p>
-          <strong>If your score</strong> qualifies for global leaderboard save and
-          you confirm, we send to the cloud (Firestore via server-side functions):
+          <strong>If your score</strong> qualifies for the worldwide top 10, the app
+          saves it locally and, when connectivity and security checks succeed, sends
+          it to the cloud (Firestore via server-side functions) using your Profile nickname:
         </p>
         <ul>
           <li>anonymous <code>uid</code>;</li>
@@ -428,15 +445,24 @@
           and update a public <strong>pseudonymous profile</strong> with nickname
           and best scores per mode, readable by other users.
         </p>
+        <p>
+          When you unlock an <strong>achievement</strong> while online, the app
+          sends to that public profile the <strong>achievement id</strong> (a fixed
+          in-game code) and <strong>unlock timestamp</strong>. Other players can see
+          which achievements you have unlocked on your pseudonymous profile, similar
+          to leaderboard scores. No free-form text is sent—only predefined milestone codes.
+        </p>
         <p class="muted">
           Until you save to the global leaderboard, run stats are not published
-          to the cloud, but the anonymous ID may still exist for technical operation
-          of online features.
+          to the cloud; achievements sync only after a local unlock. The anonymous ID
+          may still exist for technical operation of online features.
         </p>
         <p>
           We do not ask for legal name, email, or phone for the leaderboard.
-          Your nickname is <strong>user-chosen content</strong> visible to others—avoid
-          personally identifying information.
+          Your nickname is <strong>user-chosen content</strong> in Profile, visible to
+          others—avoid personally identifying information. If you change it, cloud
+          updates occur when online and you have qualifying global scores (or on the
+          next qualifying submission).
         </p>
       </section>
 
