@@ -96,7 +96,7 @@
     <header>
       <h1>Blob Invaders</h1>
       <p class="subtitle">Informativa sulla privacy · Privacy policy</p>
-      <p class="muted">Ultimo aggiornamento: 18 novembre 2026</p>
+      <p class="muted">Ultimo aggiornamento: 22 novembre 2026</p>
       <nav class="lang-nav" aria-label="Lingue">
         <a href="#it">Italiano</a>
         <a href="#en">English</a>
@@ -110,7 +110,8 @@
         <p>
           <strong>Blob Invaders</strong> è un gioco arcade per Android e iOS,
           distribuito su <strong>Google Play</strong> e sull’<strong>Apple App Store</strong>
-          (identificativo app: <code>com.jdurazzi.blobinvaders</code>).
+          (Android: <code>com.jdurazzi.blobinvaders</code> · iOS:
+          <code>com.jdurazzi.blobinvadersgame</code>).
           Non è richiesto un account con email o password per giocare.
         </p>
         <p class="muted">
@@ -185,6 +186,7 @@
           <li><code>uid</code> anonimo;</li>
           <li><strong>nickname</strong> arcade (visibile ad altri giocatori nella classifica);</li>
           <li><strong>punteggio</strong>, modalità di gioco (standard / hardcore), ondate e statistiche di run associate;</li>
+          <li>eventuale indicazione che la run ha usato una <strong>continuazione da video premio</strong> (flag visibile in classifica, es. asterisco);</li>
           <li><strong>data e ora</strong> del submit (orario server).</li>
         </ul>
         <p>
@@ -218,15 +220,52 @@
       </section>
 
       <section>
+        <h2>Annunci video premio (Google AdMob)</h2>
+        <p>
+          In modalità <strong>Standard</strong>, in punti precisi del gioco puoi
+          <strong>scegliere volontariamente</strong> di guardare un breve video
+          pubblicitario per ottenere un beneficio in partita (es. una vita in più
+          dopo il game over, al massimo una volta a run e solo dopo un numero minimo
+          di onde superate; oppure scegliere tra due potenziamenti alle onde
+          traguardo). In <strong>Hardcore</strong> questi video premio non sono offerti
+          per continuare o per i potenziamenti milestone.
+        </p>
+        <p>
+          <strong>Non</strong> usiamo banner, video a schermo intero obbligatori a fine
+          partita né annunci che bloccano il gioco se li rifiuti: puoi sempre chiudere
+          il video o ignorare l’offerta e proseguire senza il beneficio.
+        </p>
+        <p>
+          Gli annunci sono erogati da <strong>Google AdMob</strong> (Google Ireland
+          Limited / Google LLC). AdMob può trattare dati tecnici e identificatori
+          del dispositivo (es. advertising ID ove disponibile) per mostrare l’annuncio,
+          misurazione, prevenzione frodi e obblighi di legge — secondo la
+          <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Privacy policy di Google</a>
+          e le informazioni per partner pubblicitari.
+          Noi <strong>non</strong> riceviamo il contenuto dei video né usiamo i dati
+          di classifica o profilo per targhettare annunci da sole nostre.
+        </p>
+        <p>
+          Nell’<strong>UE</strong>, nel <strong>Regno Unito</strong> e dove richiesto,
+          prima di annunci personalizzati o di certe erogazioni può comparire il
+          modulo di consenso <strong>Google UMP</strong> (User Messaging Platform):
+          le tue scelte riguardano il trattamento da parte di Google/AdMob per la
+          pubblicità, non l’obbligo di giocare.
+        </p>
+      </section>
+
+      <section>
         <h2>Base giuridica (UE / GDPR)</h2>
         <p>Ove si applica il GDPR, trattiamo i dati principalmente per:</p>
         <ul>
           <li><strong>esecuzione del servizio</strong> (gioco, classifica globale, profilo pseudonimo collegato);</li>
-          <li><strong>legittimo interesse</strong> a garantire integrità della classifica, sicurezza e prevenzione di frodi/abuso (App Check, validazione server dei punteggi), nel rispetto dei tuoi diritti.</li>
+          <li><strong>legittimo interesse</strong> a garantire integrità della classifica, sicurezza e prevenzione di frodi/abuso (App Check, validazione server dei punteggi), nel rispetto dei tuoi diritti;</li>
+          <li><strong>consenso</strong> ove richiesto (es. scelte UMP per annunci AdMob nell’SEE/Regno Unito).</li>
         </ul>
         <p class="muted">
-          Non usiamo questi dati per pubblicità profilata né per «tracking» cross-app
-          ai fini marketing.
+          Non usiamo dati di gioco o classifica per pubblicità profilata da parte nostra.
+          Se guardi un video premio, Google AdMob può trattare identificatori e dati
+          annuncio secondo le sue policy.
         </p>
       </section>
 
@@ -247,9 +286,9 @@
         <h2>Cosa non facciamo</h2>
         <ul>
           <li>Nessun account con email/password obbligatorio per giocare.</li>
-          <li>Nessuna pubblicità in-app basata su profilazione (versione attuale).</li>
-          <li>Nessun SDK di analytics o crash reporting di terze parti dedicato al marketing (versione attuale).</li>
+          <li>Nessun obbligo di guardare annunci per avviare o completare una partita.</li>
           <li>Nessuna vendita di dati personali a terzi.</li>
+          <li>Nessun SDK di analytics marketing dedicato oltre a quanto descritto (Firebase, AdMob).</li>
         </ul>
       </section>
 
@@ -259,7 +298,8 @@
           Non gestiamo data center propri. I dati cloud sono ospitati da
           <strong>Google Ireland Limited</strong> / <strong>Google LLC</strong>
           tramite <strong>Google Firebase</strong> (Authentication, Firestore,
-          Cloud Functions, App Check), in regioni che Google seleziona per il progetto
+          Cloud Functions, App Check) e, per i soli video premio opzionali,
+          <strong>Google AdMob</strong>, in regioni che Google seleziona per il progetto
           (es. Stati Uniti o Unione europea). Il traffico è protetto in transito (TLS).
         </p>
         <p>
@@ -286,7 +326,9 @@
           Nell’area sviluppatore di <strong>Google Play Console</strong> e in
           <strong>App Store Connect</strong> usiamo lo stesso URL di questa pagina
           come informativa sulla privacy dell’app e compiliamo i moduli
-          «Data safety» / «App Privacy» in modo coerente con quanto scritto qui.
+          «Data safety» / «App Privacy» (inclusa la dichiarazione che l’app
+          contiene annunci) in modo coerente con quanto scritto qui — senza
+          che ciò richieda modifiche al testo marketing della scheda.
         </p>
         <p>
           <strong>Google</strong> e <strong>Apple</strong> possono trattare dati
@@ -365,7 +407,8 @@
         <p>
           <strong>Blob Invaders</strong> is a mobile arcade game for Android and
           iOS on <strong>Google Play</strong> and the <strong>Apple App Store</strong>
-          (app ID: <code>com.jdurazzi.blobinvaders</code>). No email/password
+          (Android: <code>com.jdurazzi.blobinvaders</code> · iOS:
+          <code>com.jdurazzi.blobinvadersgame</code>). No email/password
           account is required to play.
         </p>
         <p class="muted">
@@ -438,6 +481,7 @@
           <li>anonymous <code>uid</code>;</li>
           <li><strong>nickname</strong> (visible to other players);</li>
           <li><strong>score</strong>, game mode (standard / hardcore), wave stats;</li>
+          <li>optional flag if the run used a <strong>rewarded continue</strong> (visible on the board, e.g. asterisk);</li>
           <li><strong>server timestamp</strong> of submission.</li>
         </ul>
         <p>
@@ -467,14 +511,47 @@
       </section>
 
       <section>
+        <h2>Rewarded video ads (Google AdMob)</h2>
+        <p>
+          In <strong>Standard</strong> mode, at specific moments you may
+          <strong>voluntarily</strong> watch a short ad for an in-run benefit (e.g.
+          one extra life after game over, at most once per run and only after a minimum
+          number of waves cleared; or choosing between two milestone upgrades).
+          <strong>Hardcore</strong> does not offer these rewarded continue or milestone
+          ad flows.
+        </p>
+        <p>
+          We do <strong>not</strong> use banners, forced full-screen ads at game over,
+          or ads you must accept to keep playing: you can dismiss the offer or close
+          the video without receiving the benefit.
+        </p>
+        <p>
+          Ads are served by <strong>Google AdMob</strong>. AdMob may process device
+          identifiers and technical data to deliver and measure ads, prevent fraud, and
+          comply with law — under
+          <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google’s Privacy Policy</a>.
+          We do not receive ad video content and do not use leaderboard/profile data
+          on our own to target ads.
+        </p>
+        <p>
+          In the <strong>EEA</strong>, <strong>UK</strong>, and where required,
+          <strong>Google UMP</strong> consent may appear before certain ad
+          processing; your choices apply to Google/AdMob advertising, not to playing
+          the game itself.
+        </p>
+      </section>
+
+      <section>
         <h2>Legal basis (EEA / UK GDPR)</h2>
         <p>Where GDPR applies, we process data mainly for:</p>
         <ul>
           <li><strong>performance of the service</strong> (gameplay, global leaderboard, linked pseudonymous profile);</li>
-          <li><strong>legitimate interests</strong> in leaderboard integrity, security, and fraud/abuse prevention (App Check, server score validation), balanced with your rights.</li>
+          <li><strong>legitimate interests</strong> in leaderboard integrity, security, and fraud/abuse prevention (App Check, server score validation), balanced with your rights;</li>
+          <li><strong>consent</strong> where required (e.g. UMP choices for AdMob in the EEA/UK).</li>
         </ul>
         <p class="muted">
-          We do not use this data for personalized ads or cross-app marketing tracking.
+          We do not use gameplay or leaderboard data for ads targeting on our side.
+          If you watch a rewarded ad, Google AdMob may process identifiers per its policies.
         </p>
       </section>
 
@@ -494,9 +571,9 @@
         <h2>What we do not do</h2>
         <ul>
           <li>No mandatory email/password account to play.</li>
-          <li>No in-app personalized advertising (current version).</li>
-          <li>No third-party marketing analytics or crash SDKs (current version).</li>
+          <li>No requirement to watch ads to start or finish a normal run.</li>
           <li>No sale of personal data.</li>
+          <li>No separate marketing analytics SDK beyond what is described (Firebase, AdMob).</li>
         </ul>
       </section>
 
@@ -506,7 +583,8 @@
           We do not run our own data centers. Cloud data is hosted by
           <strong>Google Ireland Limited</strong> / <strong>Google LLC</strong>
           through <strong>Google Firebase</strong> (Authentication, Firestore,
-          Cloud Functions, App Check). Traffic is encrypted in transit (TLS).
+          Cloud Functions, App Check) and <strong>Google AdMob</strong> for optional
+          rewarded ads. Traffic is encrypted in transit (TLS).
         </p>
         <p>
           See
@@ -529,7 +607,9 @@
         <p>
           We list this URL as the app privacy policy in
           <strong>Google Play Console</strong> and <strong>App Store Connect</strong>
-          and complete Data safety / App Privacy forms consistently with this text.
+          and complete Data safety / App Privacy forms (including that the app
+          contains ads) consistently with this text — without requiring changes to
+          store marketing copy.
         </p>
         <p>
           <strong>Google</strong> and <strong>Apple</strong> may process data when
